@@ -66,6 +66,15 @@ npm -v
 
 If your versions are lower than suggested, then you should update to avoid any errors.
 
+### Repo Structure
+
+  * **public/index.html**: the page template
+  * **src/index.js**: the JavaScript entry point, React is rendered into DOM here, Redux store is configured, and Redux is connected to React
+  * **src/actions**: Redux actions, related actions should be in a shared file, e.g. `weatherActions.js`.
+  * **src/components**: All React components are defined here. `App.js` is the top-level component.
+  * **src/reducers**: Redux reducers are defined here. Reducers take initial state and actions called by components and return new state to the application.
+  * **src/styles**: Site-wide styles. External styles may be installed via NPM (e.g. materializecss).
+
 ### Making your Contribution
 
 #### Cloning The Repo
