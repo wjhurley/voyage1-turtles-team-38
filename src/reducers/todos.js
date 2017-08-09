@@ -1,4 +1,4 @@
-export function todoComponent(state = null, action) {
+export default function todos(state = null, action) {
   const newState = Object.assign({}, state);
   switch(action.type) {
     case 'ADD_TODO':
