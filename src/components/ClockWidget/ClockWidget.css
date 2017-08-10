@@ -1,3 +1,14 @@
 .Clock {
   font-size: 10em;
+  /*vertically center*/
+  position: absolute;
+  top:50%;
+  transform: translateY(-50%);
+  left: 0;
+  width: 100%;
+}
+
+/*horizontally center*/
+.Clock > * {
+  margin: 0 auto;
 }

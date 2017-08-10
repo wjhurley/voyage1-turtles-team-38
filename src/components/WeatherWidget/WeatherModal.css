@@ -1,0 +1,8 @@
+.Modal .weather-today {
+  font-size: 0.8em;
+}
+
+.Modal .weather-forecast {
+  display: flex;
+  flex-direction: row;
+}

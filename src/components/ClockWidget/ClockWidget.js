@@ -13,9 +13,10 @@ class ClockWidget extends Component {
   }
 
   componentDidMount() {
+    //update every second but will only display minutes
     this.timerID = setInterval(
       () => this.tick(),
-      60000
+      1000
     );
   }
 
@@ -32,7 +33,8 @@ class ClockWidget extends Component {
   render() {
     return (
       <div className="Clock">
-        {this.state.date.toLocaleTimeString('en-US',this.state.options)}
+        {/*2nd div to enable vertical/horizontal centering*/}
+        <div>{this.state.date.toLocaleTimeString('en-US',this.state.options)}</div>
       </div>
     )
   }

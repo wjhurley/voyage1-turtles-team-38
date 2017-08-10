@@ -1,0 +1,10 @@
+.Weather-cell {
+  padding: 7px;
+}
+
+.Weather-cell .day {
+  font-size: 0.8em;
+}
+.Weather-cell .range {
+  font-size: 0.8em;
+}

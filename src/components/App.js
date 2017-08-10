@@ -1,38 +1,45 @@
 import React, {Component} from 'react';
-import ClockWidget from './ClockWidget/ClockWidget';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+
+import {fetchWeather} from "../actions/weatherActions";
+
+import LinksWidget from './LinksWidget';
+import ZenWidget from './ZenWidget';
+import WeatherWidget from './WeatherWidget';
+import ClockWidget from './ClockWidget';
+import OptionsWidget from './OptionsWidget';
+import CalendarWidget from './CalendarWidget';
+import NoteWidget from './NoteWidget';
+import TodoWidget from './TodoWidget';
+
 import './App.css';
 
 class App extends Component {
+
+  componentDidMount() {
+    const {dispatch} = this.props; // passed by default with connect
+    dispatch(fetchWeather());
+  }
+
   render() {
     return (
       <div className="App">
-        {/*Elements not defined as
-        as own component have ComponentName-sub-element naming convention*/}
-        <div className="App-widget-row">
-          <div className="App-widget-cluster">
-            {/*Elements expected to be defined as own
-            component use ComponentName convention*/}
-            <div className="Widget">Links</div>
-            <div className="Widget">Zen</div>
-          </div>
-          <div className="App-widget-cluster">
-            <div className="Widget">Weather</div>
-          </div>
-        </div>
+        <LinksWidget/>
+        <ZenWidget/>
+        <WeatherWidget/>
         <ClockWidget />
-        <div className="App-widget-row">
-          <div className="App-widget-cluster">
-            <div className="Widget">Settings</div>
-            <div className="Widget">Calendar</div>
-          </div>
-          <div className="App-widget-cluster">
-            <div className="Widget">Note Taker</div>
-            <div className="Widget">To-Do</div>
-          </div>
-        </div>
+        <OptionsWidget/>
+        <CalendarWidget/>
+        <NoteWidget/>
+        <TodoWidget/>
       </div>
     );
   }
 }
 
-export default App;
+App.propTypes = {
+  dispatch: PropTypes.func.isRequired
+};
+
+export default connect()(App);

@@ -1,0 +1,7 @@
+.Icon {
+  user-select: none;
+}
+
+.Icon:hover {
+  cursor: pointer;
+}
