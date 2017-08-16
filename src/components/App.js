@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import ClockWidget from './ClockWidget/ClockWidget';
 import './App.css';
 
 class App extends Component {
@@ -18,9 +19,7 @@ class App extends Component {
             <div className="Widget">Weather</div>
           </div>
         </div>
-        <div className="Widget Clock">
-          6:30
-        </div>
+        <ClockWidget />
         <div className="App-widget-row">
           <div className="App-widget-cluster">
             <div className="Widget">Settings</div>

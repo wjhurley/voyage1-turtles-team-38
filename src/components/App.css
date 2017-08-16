@@ -23,9 +23,3 @@
   align-items: flex-end;
   flex-basis: 30%;
 }
-
-/*Clock css should be moved
-to it's own once we create component*/
-.Clock {
-  font-size: 10em;
-}
