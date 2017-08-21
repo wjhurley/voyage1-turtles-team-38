@@ -5,21 +5,4 @@
   width: 100vw;
   padding: 3vw;
   color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: stretch;
-}
-
-.App-widget-row {
-  display: flex;
-  justify-content: space-between;
-  /*flex-direction:row;*/
-}
-
-.App-widget-cluster {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  flex-basis: 30%;
 }
