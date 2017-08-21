@@ -1,9 +1,9 @@
 export default function mapWeatherIcon(code) {
  switch(code) {
-   case "0": //'tornado'
-   case "1": //tropical storm
-   case "2": //hurricane
-   case "3": //severe thunderstorms
+   case "0": // tornado
+   case "1": // tropical storm
+   case "2": // hurricane
+   case "3": // severe thunderstorms
    case "4": // thunderstorms
      return "owi-11d";
    case "5": //	mixed rain and snow
@@ -11,11 +11,11 @@ export default function mapWeatherIcon(code) {
    case "7": //	mixed snow and sleet
    case "18": //	sleet
      return "owi-09d";
-   case "8": //	freezing drizzle
+   case "8": // freezing drizzle
    case "10": //	freezing rain
      return "owi-01d";
    case "9": //	drizzle
-   case "11": // showers
+   case "11": //  showers
    case "12": //	showers
    case "39": //	scattered thunderstorms
    case "40": //	scattered showers
@@ -30,7 +30,7 @@ export default function mapWeatherIcon(code) {
    case "21": //	haze
    case "22": //	smoky
      return "owi-01d";
-   case "15": //blowing snow
+   case "15": //  blowing snow
    case "23": //	blustery
    case "24": //	windy
      return "owi-01d";

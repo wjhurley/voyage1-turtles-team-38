@@ -10,13 +10,13 @@ This app depends on the following libraries:
 * [redux-thunk](https://github.com/gaearon/redux-thunk) for performing asynchronous redux dispatches
 * [create-react-app](https://github.com/facebookincubator/create-react-app) for bundling and development
 
-From a functionality-perspective this app is composed of a number widgets which the user can interact with to view or record information including weather, links, todos, notes, a "zen" background video and options.
+From a functionality-perspective this app is composed of a number of widgets which the user can interact with to view or record information including weather, links, todos, notes, a "zen" background video and options.
 
 Each widget is composed of an icon and a modal (except the zen video). The basic structure and styles for the widget, icon and modal are defined commonly within the ``src/components/common`` directory.
 
 The widget specific view code is stored in its own directory under ``src/components``, for example ``src/components/WeatherWidget``.
 
-The redux code is stored in ``src/actions`` for the [action creators](http://redux.js.org/docs/basics/Actions.html#action-creators) and ``src/reducers`` for the [reducers](http://redux.js.org/docs/basics/Reducers.html). 
+The redux code is stored in ``src/actions`` for the [action creators](http://redux.js.org/docs/basics/Actions.html#action-creators) and ``src/reducers`` for the [reducers](http://redux.js.org/docs/basics/Reducers.html).
 
 ### Creating a Widget
 
@@ -44,7 +44,7 @@ Never return mutated state, so the [spread operator for arrays](https://github.c
 
 Create a folder for each widget within ``src/components`` and also the redux-aware "container" component within a .js file in that folder both with the naming convention "*Widget*Widget".
 
-This component should render the common ``Widget``, ``Icon`` and ``Modal`` components with appropriate props. 
+This component should render the common ``Widget``, ``Icon`` and ``Modal`` components with appropriate props.
 
 Icon & Modal should be "presentational" components and not aware of redux. The Modal will likely need it's own file for customizations (see ``WeatherWidget``) and is not required for Zen videos. The Icon will require its own customizations for weather & todo (and maybe calendar) but not for the others. If no customizations are required then the common ``Icon.js`` can be directly imported into the *Widget.js file.
 
@@ -76,7 +76,7 @@ Next checkout your topic branch and start working!
   > $ git checkout -b create-note-widget
   > ```
 
-Once you are done all your work, rebase onto master before pushing so we can [avoid a merge commit](https://nathanleclaire.com/blog/2014/09/14/dont-be-scared-of-git-rebase/).
+Once you are done with all of your work, rebase onto master before pushing so we can [avoid a merge commit](https://nathanleclaire.com/blog/2014/09/14/dont-be-scared-of-git-rebase/).
 
 ##### Rebasing onto Master
 
@@ -109,8 +109,8 @@ Rebase onto master:
 Finally push to GitHub:
 
   > ```shell
-  > $ git push 
-  > ``` 
+  > $ git push
+  > ```
 
 #### Create Pull Request
 
