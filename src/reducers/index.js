@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import todos from './todos';
 import weather from './weather';
+import notes from './notes';
 
 // each reducer will be associated with a piece of the app's functionality
 // with the store's single state tree having being composed similarly, for example:
@@ -10,5 +11,6 @@ import weather from './weather';
 
 export default combineReducers({
   todos,
-  weather
+  weather,
+  notes
 });
