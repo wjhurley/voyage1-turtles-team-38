@@ -6,10 +6,20 @@ import { toggleModalVisibility } from "../../actions/noteActions";
 
 import Widget from '../common/Widget';
 
+import NoteIcon from './NoteIcon';
 import NoteModal from './NoteModal';
 
-const NoteWidget = ({notes}) => {
+const NoteWidget = ({notes, onIconClick}) => {
   const {iconIsVisible, modalIsVisible} = notes;
+
+  const renderIcon = () => {
+    return iconIsVisible ?
+      <NoteIcon
+        onIconClick={onIconClick}
+      />
+      : null;
+  }
+
   const renderModal = () => {
     return modalIsVisible ? <NoteModal /> : null;
   };
@@ -20,7 +30,7 @@ const NoteWidget = ({notes}) => {
       xPosition="right"
       xOffset={10}
     >
-      Notes
+      {renderIcon()}
       {renderModal()}
     </Widget>
   );

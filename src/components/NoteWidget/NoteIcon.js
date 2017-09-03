@@ -33,9 +33,16 @@ class NoteIcon extends Component {
     const { arrowIsHidden } = this.state;
 
     return (
-      <div onMouseEnter={this.handleOnMouseEnter} onMouseLeave={this.handleOnMouseLeave}>
-        <Icon onHoverText="Note Taker" onIconClick={onIconClick} />
+      <div
+        onMouseEnter={this.handleOnMouseEnter}
+        onMouseLeave={this.handleOnMouseLeave}
+      >
         <NoteIconArrow hidden={arrowIsHidden} />
+        <Icon
+          onHoverText="Note Taker"
+          onIconClick={onIconClick}
+          faClass="fa-pencil-square-o"
+        />
       </div>
     );
   }
