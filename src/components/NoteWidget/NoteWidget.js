@@ -30,8 +30,8 @@ const NoteWidget = ({notes, onIconClick}) => {
       xPosition="right"
       xOffset={10}
     >
-      {renderIcon()}
       {renderModal()}
+      {renderIcon()}
     </Widget>
   );
 };
