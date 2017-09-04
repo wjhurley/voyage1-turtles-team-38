@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { toggleModalVisibility } from "../../actions/noteActions";
+import { toggleNoteVisibility } from "../../actions/noteActions";
 
 import Widget from '../common/Widget';
 
@@ -10,10 +10,10 @@ import NoteIcon from './NoteIcon';
 import NoteModal from './NoteModal';
 
 const NoteWidget = ({notes, onIconClick}) => {
-  const {iconIsVisible, modalIsVisible} = notes;
+  const {noteIconIsVisible, noteIsVisible} = notes;
 
   const renderIcon = () => {
-    return iconIsVisible ?
+    return noteIconIsVisible ?
       <NoteIcon
         onIconClick={onIconClick}
       />
@@ -21,7 +21,7 @@ const NoteWidget = ({notes, onIconClick}) => {
   }
 
   const renderModal = () => {
-    return modalIsVisible ? <NoteModal /> : null;
+    return noteIsVisible ? <NoteModal /> : null;
   };
 
   return (
@@ -37,7 +37,7 @@ const NoteWidget = ({notes, onIconClick}) => {
 };
 
 NoteWidget.propTypes = {
-
+  onIconClick: PropTypes.func.isRequired
 };
 
 function mapStateToProps({notes}) {
@@ -47,7 +47,7 @@ function mapStateToProps({notes}) {
 function mapDispatchToProps(dispatch) {
   return {
     onIconClick: () => {
-      dispatch(toggleModalVisibility());
+      dispatch(toggleNoteVisibility());
     }
   };
 }

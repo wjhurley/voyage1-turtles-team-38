@@ -1,17 +1,17 @@
 import { combineReducers } from 'redux';
 
-const iconIsVisible = (state = true, action) => {
+const noteIconIsVisible = (state = true, action) => {
   switch(action.type) {
-    case 'TOGGLE_ICON_VISIBILITY':
+    case 'TOGGLE_NOTE_ICON_VISIBILITY':
       return !state;
     default:
       return state;
   }
 };
 
-const modalIsVisible = (state = false, action) => {
+const noteIsVisible = (state = false, action) => {
   switch(action.type) {
-    case 'TOGGLE_MODAL_VISIBILITY':
+    case 'TOGGLE_NOTE_VISIBILITY':
       return !state;
     default:
       return state;
@@ -19,6 +19,6 @@ const modalIsVisible = (state = false, action) => {
 };
 
 export default combineReducers({
-  iconIsVisible,
-  modalIsVisible
+  noteIconIsVisible,
+  noteIsVisible
 });

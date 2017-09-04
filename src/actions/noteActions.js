@@ -1,5 +1,5 @@
-export function toggleModalVisibility() {
+export function toggleNoteVisibility() {
   return {
-    type: 'TOGGLE_MODAL_VISIBILITY'
+    type: 'TOGGLE_NOTE_VISIBILITY'
   };
 }
