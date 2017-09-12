@@ -1,43 +1,44 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
+import {connect} from 'react-redux';
+// import PropTypes from 'prop-types';
 
 import Modal from '../common/Modal';
 
 import './NoteModal.css';
+import {updateNoteContent} from "../../actions/noteActions";
 
-class NoteModal extends Component  {
-  constructor(props) {
-    super(props);
-    this.state = {
-      note: ''
-    };
-    this.handleOnChange = this.handleOnChange.bind(this);
-  }
+const NoteModal = ({note, updateNoteContent}) => {
 
-  handleOnChange(e) {
-    this.setState({
-      note: e.target.value
-    });
-  }
+  // handleOnChange(e) {
+  //   this.setState({
+  //     note: e.target.value
+  //   });
+  // }
 
-  render() {
-    return (
-      <div className="note-modal">
-        <Modal header="Notes">
+  return (
+    <div className="note-modal">
+      <Modal header="Notes">
           <textarea
             maxLength="8000"
             className="notepad"
-            onChange={this.handleOnChange}
-          >
+            onChange={e => updateNoteContent(e.target.value)}
+          >{note.content}
           </textarea>
-        </Modal>
-      </div>
-    );
+      </Modal>
+    </div>
+  );
+};
+
+function mapStateToProps({note}) {
+  return {note};
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    updateNoteContent: content => {
+      dispatch(updateNoteContent(content))
+    }
   }
-};
+}
 
-NoteModal.propTypes = {
-
-};
-
-export default NoteModal;
+export default connect(mapStateToProps, mapDispatchToProps)(NoteModal);

@@ -9,8 +9,8 @@ import Widget from '../common/Widget';
 import NoteIcon from './NoteIcon';
 import NoteModal from './NoteModal';
 
-const NoteWidget = ({notes, onIconClick}) => {
-  const {noteIconIsVisible, noteIsVisible} = notes;
+const NoteWidget = ({note, onIconClick}) => {
+  const {noteIconIsVisible, noteIsVisible} = note;
 
   const renderIcon = () => {
     return noteIconIsVisible ?
@@ -18,7 +18,7 @@ const NoteWidget = ({notes, onIconClick}) => {
         onIconClick={onIconClick}
       />
       : null;
-  }
+  };
 
   const renderModal = () => {
     return noteIsVisible ? <NoteModal /> : null;
@@ -40,8 +40,8 @@ NoteWidget.propTypes = {
   onIconClick: PropTypes.func.isRequired
 };
 
-function mapStateToProps({notes}) {
-  return {notes};
+function mapStateToProps({note}) {
+  return {note};
 }
 
 function mapDispatchToProps(dispatch) {
