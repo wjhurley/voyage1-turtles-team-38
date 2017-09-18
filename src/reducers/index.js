@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import background from './background';
 import todos from './todos';
 import weather from './weather';
 
@@ -9,6 +10,7 @@ import weather from './weather';
 // note that the settings component will interact with all of the different store sub-objects
 
 export default combineReducers({
+  background,
   todos,
   weather
 });
