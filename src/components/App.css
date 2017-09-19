@@ -13,4 +13,9 @@
 .unsplash {
   bottom: 2em;
   display: block;
+  margin: 0;
+}
+
+.unsplash a {
+  text-decoration: none;
 }

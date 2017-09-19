@@ -8,8 +8,11 @@ async function fetchUnsplashImage() {
     const arr = Array.from(res.data);
     // image = `url(${arr[rand].urls.raw})`;
     imageData = arr[rand];
-    console.log(arr[rand]);
-    return imageData;
+    const userName = imageData.user.name;
+    const userProfile = imageData.user.links.html;
+    const imageUrl = imageData.urls.raw;
+    console.log(userName + "\n" + userProfile + "\n" + imageUrl);
+    return {userName, userProfile, imageUrl};
   } catch (err) {
     throw err;
   }
