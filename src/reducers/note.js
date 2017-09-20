@@ -22,7 +22,7 @@ export default (note = initialState, action) => {
       });
     case NOTE_CONTENT_UPDATE:
       return Object.assign({}, note, {
-        content: note.content
+        content: action.content
       });
     default:
       return note;

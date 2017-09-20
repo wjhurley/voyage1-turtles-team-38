@@ -2,15 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { toggleNoteVisibility } from "../../actions/noteActions";
+import { toggleNoteVisibility, updateNoteContent } from "../../actions/noteActions";
 
 import Widget from '../common/Widget';
 
 import NoteIcon from './NoteIcon';
 import NoteModal from './NoteModal';
 
-const NoteWidget = ({note, onIconClick}) => {
-  const {noteIconIsVisible, noteIsVisible} = note;
+const NoteWidget = ({note, onIconClick, onContentChange}) => {
+  const {noteIconIsVisible, noteIsVisible, content} = note;
 
   const renderIcon = () => {
     return noteIconIsVisible ?
@@ -21,7 +21,10 @@ const NoteWidget = ({note, onIconClick}) => {
   };
 
   const renderModal = () => {
-    return noteIsVisible ? <NoteModal /> : null;
+    return noteIsVisible ? <NoteModal
+      onContentChange={onContentChange}
+      content={content}
+    /> : null;
   };
 
   return (
@@ -48,6 +51,9 @@ function mapDispatchToProps(dispatch) {
   return {
     onIconClick: () => {
       dispatch(toggleNoteVisibility());
+    },
+    onContentChange: content => {
+      dispatch(updateNoteContent(content))
     }
   };
 }

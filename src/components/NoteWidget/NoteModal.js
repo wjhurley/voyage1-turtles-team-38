@@ -1,19 +1,11 @@
 import React from 'react';
-import {connect} from 'react-redux';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import Modal from '../common/Modal';
 
 import './NoteModal.css';
-import {updateNoteContent} from "../../actions/noteActions";
 
-const NoteModal = ({note, updateNoteContent}) => {
-
-  // handleOnChange(e) {
-  //   this.setState({
-  //     note: e.target.value
-  //   });
-  // }
+const NoteModal = ({content, onContentChange}) => {
 
   return (
     <div className="note-modal">
@@ -21,24 +13,17 @@ const NoteModal = ({note, updateNoteContent}) => {
           <textarea
             maxLength="8000"
             className="notepad"
-            onChange={e => updateNoteContent(e.target.value)}
-          >{note.content}
-          </textarea>
+            value={content}
+            onChange={e => onContentChange(e.target.value)}
+          />
       </Modal>
     </div>
   );
 };
 
-function mapStateToProps({note}) {
-  return {note};
-}
+NoteModal.propTypes = {
+  content: PropTypes.string.isRequired,
+  onContentChange: PropTypes.func.isRequired
+};
 
-function mapDispatchToProps(dispatch) {
-  return {
-    updateNoteContent: content => {
-      dispatch(updateNoteContent(content))
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(NoteModal);
+export default NoteModal;

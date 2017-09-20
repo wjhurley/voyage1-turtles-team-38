@@ -40,7 +40,7 @@ class NoteIcon extends Component {
         <NoteIconArrow hidden={arrowIsHidden} />
         <Icon
           onHoverText="Note Taker"
-          onIconClick={this.props.onIconClick}
+          onIconClick={onIconClick}
           faClass="fa-pencil-square-o"
         />
       </div>
