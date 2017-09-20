@@ -25,14 +25,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <LinksWidget/>
-        <ZenWidget/>
-        <WeatherWidget/>
+        <LinksWidget />
+        <ZenWidget />
+        <WeatherWidget />
         <ClockWidget />
-        <OptionsWidget/>
-        <CalendarWidget/>
-        <NoteWidget/>
-        <TodoWidget/>
+        <OptionsWidget />
+        <CalendarWidget />
+        <NoteWidget />
+        <TodoWidget />
       </div>
     );
   }
