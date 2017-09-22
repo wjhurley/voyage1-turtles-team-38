@@ -3,22 +3,19 @@ import PropTypes from 'prop-types';
 
 import './Icon.css';
 
-const Icon = ({onIconClick, onHoverText, faClass, children}) => {
+const Icon = ({faClass, hoverText}) => {
   return (
-    <div className="Icon"
-         title={onHoverText}
-         onClick={onIconClick}
-    >
-      {faClass ? <i className={`fa ${faClass}`}/> : null}
-      {children}
-    </div>
+    <i
+      title={hoverText}
+      className={`fa ${faClass}`}
+      aria-hidden="true"
+    />
   );
 };
 
 Icon.propTypes = {
-  onIconClick: PropTypes.func,
-  onHoverText: PropTypes.string,
-  faClass: PropTypes.string
+  faClass: PropTypes.string,
+  hoverText: PropTypes.string,
 };
 
 export default Icon;

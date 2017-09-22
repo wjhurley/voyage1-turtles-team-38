@@ -1,0 +1,64 @@
+.OptionsWindow {
+  background-color: #333;
+  box-shadow: 0 10px 43px 0 rgba(0, 0, 0, 0.85);
+  border-radius: 3px;
+
+  /*to center vertically within window*/
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+
+  width: 600px;
+  height: 450px;
+  z-index: 1;
+}
+
+.OptionsWindow .Header {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  user-select: none;
+  padding: 10px;
+}
+
+.OptionsWindow .Body {
+  display: flex;
+}
+
+.OptionsWindow .MenuItem:hover > .MenuItemIcon {
+  color: rgba(0, 153, 255, 0.4);
+}
+
+.OptionsForm {
+  font-size: 14px;
+  width: 398px;
+  height: 390px;
+  border-left: 1px solid #999;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.OptionsForm .Body {
+  /* want body to take up same amount of space
+   regardless of active section's content
+   white Footer is fixed */
+  flex-grow: 1;
+}
+
+.OptionsForm .Footer button {
+  background: transparent;
+  border: solid white;
+  font-size: 16px;
+  color: white;
+  margin: 10px;
+}
+
+.OptionsForm .Footer button:hover {
+  border: solid rgba(0, 153, 255, 0.4);
+}
+
+

@@ -1,6 +1,11 @@
 import axios from 'axios';
 import moment from 'moment';
 
+import {
+  WEATHER_FETCH_FAILURE,
+  WEATHER_FETCH_SUCCESS,
+} from './actionTypes';
+
 import mapWeatherIcon from './mapWeatherIcon';
 
 function getCoordinates() {
@@ -14,7 +19,7 @@ function getCoordinates() {
   });
 }
 
-async function fetchYahooWeather(customLocation) {
+async function fetchYahooWeather(units, customLocation) {
   try {
     let yqlSubQuery;
     if (customLocation) {
@@ -24,7 +29,7 @@ async function fetchYahooWeather(customLocation) {
       const {latitude, longitude} = position.coords;
       yqlSubQuery = `SELECT woeid FROM geo.places(1) WHERE text="(${latitude},${longitude})"`;
     }
-    const endpoint = `https://query.yahooapis.com/v1/public/yql?q=SELECT location, item.condition, item.forecast FROM weather.forecast WHERE u = "f" AND woeid IN (${yqlSubQuery})&format=json`;
+    const endpoint = `https://query.yahooapis.com/v1/public/yql?q=SELECT location, item.condition, item.forecast FROM weather.forecast WHERE u = "${units.toLowerCase()}" AND woeid IN (${yqlSubQuery})&format=json`;
     const res = await axios.get(endpoint);
     const location = res.data.query.results.channel[0].location;
     const condition = Object.assign(
@@ -45,27 +50,20 @@ async function fetchYahooWeather(customLocation) {
   }
 }
 
-export function fetchWeather(customLocation = null) {
+export function fetchWeather(units = "f", customLocation = null) {
   return async dispatch => {
     try {
-      const weatherData = await fetchYahooWeather(customLocation);
+      const weatherData = await fetchYahooWeather(units, customLocation);
       dispatch({
-        type: 'FETCH_WEATHER_SUCCESS',
-        data: weatherData
+        type: WEATHER_FETCH_SUCCESS,
+        data: weatherData,
       });
     } catch (err) {
       dispatch({
-        type: 'FETCH_WEATHER_FAILURE',
-        errorMessage: err.message || 'Unknown error'
+        type: WEATHER_FETCH_FAILURE,
+        error: {errorMessage: err.message || 'Unknown error'}
       });
     }
   }
 }
 
-export function toggleIconVisibility() {
-  return {type: 'TOGGLE_ICON_VISIBILITY'};
-}
-
-export function toggleModalVisibility() {
-  return {type: 'TOGGLE_MODAL_VISIBILITY'};
-}

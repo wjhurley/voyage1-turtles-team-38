@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
 import background from './background';
-import todos from './todos';
 import weather from './weather';
 import note from './note';
+import options from './options';
+import links from './links';
 
 // each reducer will be associated with a piece of the app's functionality
 // with the store's single state tree having being composed similarly, for example:
@@ -12,7 +13,8 @@ import note from './note';
 
 export default combineReducers({
   background,
-  todos,
   weather,
-  note
+  note,
+  options,
+  links,
 });

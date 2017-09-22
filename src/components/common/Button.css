@@ -1,0 +1,14 @@
+.Button {
+  user-select: none;
+  background: none;
+  padding: 0;
+  color: white;
+}
+
+.Button:hover {
+  cursor: pointer;
+}
+
+.Button:focus {
+  outline: none;
+}

@@ -1,0 +1,16 @@
+.SlidingWidget {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  /*use width 0 so that flex container does not have width of panel, therefore potentially overlapping other icons, when panel shrinks in height to 0 when inactive*/
+  width: 0;
+  overflow-x: visible;
+}
+
+.SlidingPanel {
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
+  transition: height 0.4s ease-out;
+  border-radius: 3px;
+}

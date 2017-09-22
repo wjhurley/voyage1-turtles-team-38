@@ -1,0 +1,21 @@
+.AddLinkButton {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  justify-content: space-between;
+  background-color: rgba(0, 0, 0, 0.6);
+  font-size: 14px;
+}
+
+.AddLinkButton .Button:hover {
+  color: rgb(100, 191, 86);
+}
+
+.AddLinkForm {
+  background-color: rgba(0, 0, 0, 0.6);
+  display: none;
+}
+
+.AddLinkForm.isActive {
+  display: block;
+}

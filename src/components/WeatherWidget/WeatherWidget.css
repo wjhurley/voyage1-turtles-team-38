@@ -1,0 +1,44 @@
+.WidgetBody .weather-today {
+  font-size: 14px;
+  padding: 10px;
+}
+
+.WidgetBody .weather-forecast {
+  display: flex;
+  flex-direction: row;
+}
+.weather-conditions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content:space-around;
+}
+
+.weather-conditions > i {
+  font-size: 25px;
+}
+
+.weather-city {
+  font-size: 18px;
+}
+
+.Weather-cell {
+  padding: 7px;
+  font-size: 14px;
+}
+
+.Weather-cell .conditions {
+  font-size: 20px;
+}
+
+.Weather-cell .range {
+  font-size: 12px;
+  display: flex;
+}
+
+.Icon .weather-temp {
+  font-size: 18px;
+}
+.Icon .weather-city {
+  font-size: 10px;
+}

@@ -1,14 +1,24 @@
 .Clock {
-  font-size: 10em;
+  position: fixed;
   /*vertically center*/
-  position: absolute;
+  /*color: transparent;*/
   top:50%;
   transform: translateY(-50%);
   left: 0;
   width: 100%;
+  text-align: center;
+  /*unlike original leoh - put clock behind all but background*/
+  z-index: -1;
 }
 
-/*horizontally center*/
-.Clock > * {
-  margin: 0 auto;
+.Clock .time {
+  font-size: 8em;
+}
+
+.Clock .ampm {
+  font-size: 1em;
+}
+
+.Clock .date {
+  font-size: 1em;
 }

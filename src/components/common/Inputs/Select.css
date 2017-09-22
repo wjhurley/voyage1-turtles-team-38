@@ -1,0 +1,8 @@
+.Select {
+  outline: none;
+  background-color: #333;
+  opacity: 0.8;
+  color: #fff;
+  border: 1px solid transparent;
+  border-bottom: 1px solid rgba(255,255,255,0.8);
+}
