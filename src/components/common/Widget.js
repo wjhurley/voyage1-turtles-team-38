@@ -14,8 +14,8 @@ const Widget = ({yPosition, xPosition, yOffset, xOffset, children}) => {
   };
 
   return (
-    <div className="Widget" style={styles}
-    >{children}
+    <div className="Widget" style={styles}>
+      {children}
     </div>
   );
 };
