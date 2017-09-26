@@ -47,14 +47,15 @@ class App extends Component {
     if(backgroundSuccess) {
       return `url(${backgroundSuccess.imageUrl})`;
     }
-    return null;
+    // default image on unplash API failure
+    return "url(https://source.unsplash.com/collection/1194376/1600x900)";
   }
 
   render() {
     return (
       <div
         className="App"
-        style={{backgroundImage: this.renderBackground ? this.renderBackground() : "url(https://source.unsplash.com/collection/1194376/1600x900)"}}
+        style={{backgroundImage: this.renderBackground()}}
       >
         <LinksWidget/>
         <ZenWidget/>

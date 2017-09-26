@@ -10,8 +10,8 @@ async function fetchUnsplashImage() {
     imageData = arr[rand];
     const userName = imageData.user.name;
     const userProfile = imageData.user.links.html;
-    const imageUrl = imageData.urls.raw;
-    console.log(userName + "\n" + userProfile + "\n" + imageUrl);
+    // TODO: try optimizing with full for better quality image
+    const imageUrl = imageData.urls.regular;
     return {userName, userProfile, imageUrl};
   } catch (err) {
     throw err;
@@ -22,7 +22,6 @@ export function fetchImage() {
   return async dispatch => {
     try {
       const backgroundImageData = await fetchUnsplashImage();
-      console.log(backgroundImageData);
       dispatch({
         type: 'FETCH_IMAGE_SUCCESS',
         backgroundData: backgroundImageData
