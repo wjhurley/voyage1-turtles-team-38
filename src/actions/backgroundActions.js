@@ -9,7 +9,7 @@ async function fetchUnsplashImage() {
     // image = `url(${arr[rand].urls.raw})`;
     imageData = arr[rand];
     const userName = imageData.user.name;
-    const userProfile = imageData.user.links.html;
+    const userProfile = imageData.user.links.html + "?utm_source=leoh_clone&utm_medium=referral&utm_campaign=api-credit";
     // TODO: try optimizing with full for better quality image
     const imageUrl = imageData.urls.regular;
     return {userName, userProfile, imageUrl};

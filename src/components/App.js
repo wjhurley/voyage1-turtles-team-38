@@ -13,7 +13,6 @@ import OptionsWidget from './OptionsWidget';
 import CalendarWidget from './CalendarWidget';
 import NoteWidget from './NoteWidget';
 import TodoWidget from './TodoWidget';
-import Widget from './common/Widget';
 
 import './App.css';
 
@@ -27,24 +26,24 @@ class App extends Component {
 
   renderPhotoInfo() {
     const {backgroundSuccess} = this.props.background;
-    if(backgroundSuccess) {
+    if (backgroundSuccess) {
       return (
-        <Widget
-          yPosition="bottom"
-          xPosition="right"
-          xOffset={39}
-        >
-          <p className="unsplash">
-            Photo by <a href={backgroundSuccess.userProfile}>{backgroundSuccess.userName}</a> / <a href="https://unsplash.com">Unsplash</a>
-          </p>
-        </Widget>
+        <p className="unsplash">
+          Photo by <a target="_blank"
+                      rel="noopener noreferrer"
+                      href={backgroundSuccess.userProfile}>{backgroundSuccess.userName}</a> / <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://unsplash.com?utm_source=leoh_clone&utm_medium=referral&utm_campaign=api-credit">Unsplash</a>
+        </p>
       );
     }
     return null;
   }
+
   renderBackground() {
     const {backgroundSuccess} = this.props.background;
-    if(backgroundSuccess) {
+    if (backgroundSuccess) {
       return `url(${backgroundSuccess.imageUrl})`;
     }
     // default image on unplash API failure
@@ -60,7 +59,7 @@ class App extends Component {
         <LinksWidget/>
         <ZenWidget/>
         <WeatherWidget/>
-        <ClockWidget />
+        <ClockWidget/>
         <OptionsWidget/>
         <CalendarWidget/>
         <NoteWidget/>
