@@ -1,60 +1,75 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
-import { toggleNoteVisibility, updateNoteContent } from "../../actions/noteActions";
+import {updateNoteContent} from '../../actions/noteActions';
 
-import Widget from '../common/Widget';
+import SlidingWidget from '../common/SlidingWidget';
+import WidgetBody from '../common/SlidingWidgetBody';
+import WidgetHeader from '../common/SlidingWidgetHeader';
+import IconButton from '../common/IconButton';
+import TextArea from '../common/Inputs/TextArea';
 
-import NoteIcon from './NoteIcon';
-import NoteModal from './NoteModal';
-
-const NoteWidget = ({note, onIconClick, onContentChange}) => {
-  const {noteIconIsVisible, noteIsVisible, content} = note;
-
-  const renderIcon = () => {
-    return noteIconIsVisible ?
-      <NoteIcon
-        onIconClick={onIconClick}
-      />
-      : null;
-  };
-
-  const renderModal = () => {
-    return noteIsVisible ? <NoteModal
-      onContentChange={onContentChange}
-      content={content}
-    /> : null;
-  };
-
+const NoteBody = ({content, updateNote}) => {
   return (
-    <Widget
-      yPosition="bottom"
-      xPosition="right"
-      xOffset={10}
-    >
-      {renderModal()}
-      {renderIcon()}
-    </Widget>
+    <WidgetBody header="Notes">
+      <TextArea
+        name="notes"
+        value={content}
+        onChange={event => updateNote(event.target.value)}
+        style={{flexGrow: 1}}
+      />
+    </WidgetBody>
   );
 };
 
-NoteWidget.propTypes = {
-  onIconClick: PropTypes.func.isRequired
+const NoteWidget = ({note: {content}, allHide, noteActiveOnOpen, noteHide, updateNote}) => {
+  return (
+    <SlidingWidget
+      yPosition="bottom"
+      xPosition="right"
+      xOffset={10}
+      heightWhenActive='350px'
+      width='450px'
+      activeOnOpen={noteActiveOnOpen}
+      showArrowOnIconHover={true}
+      widgetIcon={<IconButton
+        iconIsVisible={!allHide && !noteHide}
+        faClass="fa-pencil-square-o"
+        onHoverText="Note Taker"
+      />}
+      widgetHeader={<WidgetHeader header="Note Taker"/>}
+      widgetBody={<NoteBody
+        content={content}
+        updateNote={updateNote}
+      />}
+    />
+  );
 };
 
-function mapStateToProps({note}) {
-  return {note};
+function mapStateToProps(
+  {
+    note,
+    options:
+      {
+        allHide,
+        noteActiveOnOpen,
+        noteHide
+      },
+  }
+) {
+  return {
+    note,
+    allHide,
+    noteActiveOnOpen,
+    noteHide,
+  };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    onIconClick: () => {
-      dispatch(toggleNoteVisibility());
+    updateNote: content => {
+      dispatch(updateNoteContent(content));
     },
-    onContentChange: content => {
-      dispatch(updateNoteContent(content))
-    }
   };
 }
 

@@ -6,11 +6,15 @@ This is turtles-team-38's project cloning the [Leoh Chrome extension](https://ch
 
 ### Front-End:
 1. React.js
-2. CSS3
+1. Redux
+1. ReduxPersist (for local storage)
+1. ReduxThunk
+1. CSS3
 
-### Back-End:
-1. Github
-1. Node.js
+### DevOps:
+1. GitHub
+1. npm
+1. CreateReactApp
 
 ## Progress
 
@@ -41,22 +45,6 @@ Let us know you, if are working on any *issue/feature* by creating an **issue**.
 > _Updating to the latest releases is recommended_.
 <br/>
 
-### Dependencies
-
-|Packages              | Version  |
-|----------------------|----------|
-| react                |`~ ^15.6.1`|
-| react-dom            |`~ ^15.6.1`|
-<br/>
-
-### Dev-Dependencies
-
-|Packages              | Version  |
-|----------------------|----------|
-| gh-pages             |`~^1.0.0`|
-| react-scripts        |`^1.0.10`|
-
-
 If you have already installed Node.js in your system, then run the following command to validate the versions.
 
 ```shell
@@ -66,6 +54,12 @@ npm -v
 
 If your versions are lower than suggested, then you should update to avoid any errors.
 
+To install dependencies:
+
+```shell
+npm install
+```
+
 ### Repo Structure
 
   * **public/index.html**: the page template
@@ -73,7 +67,7 @@ If your versions are lower than suggested, then you should update to avoid any e
   * **src/actions**: Redux actions, related actions should be in a shared file, e.g. `weatherActions.js`.
   * **src/components**: All React components are defined here. `App.js` is the top-level component.
   * **src/reducers**: Redux reducers are defined here. Reducers take initial state and actions called by components and return new state to the application.
-  * **src/styles**: Site-wide styles. External styles may be installed via NPM (e.g. materializecss).
+  * **src/styles**: Global styles
 
 ### Making your Contribution
 

@@ -1,0 +1,4 @@
+.Menu {
+  /*has to be block instead of flex to properly handle sliding parent*/
+  display: block;
+}

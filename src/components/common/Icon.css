@@ -1,7 +1,10 @@
 .Icon {
-  user-select: none;
+  color: white;
+  font-size: 22px;
+  opacity: 0.8;
 }
 
 .Icon:hover {
-  cursor: pointer;
+  opacity: 1;
 }
+

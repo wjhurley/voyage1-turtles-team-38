@@ -1,30 +1,25 @@
+import {REHYDRATE} from 'redux-persist/constants';
+
 import {
-  NOTE_ICON_TOGGLE_VISIBILITY,
-  NOTE_TOGGLE_VISIBILITY,
-  NOTE_CONTENT_UPDATE
+  NOTE_CONTENT_UPDATE,
 } from '../actions/actionTypes';
 
+import {updateObject} from '../utils/index';
+
 const initialState = {
-  noteIconIsVisible: true,
-  noteIsVisible: false,
   content: ""
 };
 
-export default (note = initialState, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
-    case NOTE_TOGGLE_VISIBILITY:
-      return Object.assign({}, note, {
-        noteIsVisible: !note.noteIsVisible
-      });
-    case NOTE_ICON_TOGGLE_VISIBILITY:
-      return Object.assign({}, note, {
-        noteIconIsVisible: !note.noteIconIsVisible
-      });
+    case REHYDRATE:
+      const note = action.payload.note;
+      return updateObject(state, note);
     case NOTE_CONTENT_UPDATE:
-      return Object.assign({}, note, {
-        content: action.content
+      return updateObject(state, {
+        content: action.content,
       });
     default:
-      return note;
+      return state;
   }
 };

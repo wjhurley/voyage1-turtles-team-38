@@ -1,0 +1,31 @@
+.Checkbox {
+  display: none;
+}
+
+.Checkbox + span {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  font-size: 8px;
+  color: transparent;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid white;
+  margin: 0 2px;
+  /*this property along with vertical-align: middle for i will put checkbox in center of box */
+  text-align: center;
+}
+
+.Checkbox + span i {
+  vertical-align: middle;
+}
+
+.Checkbox:checked + span {
+  background-color: rgba(0, 153, 255, 1);
+  border: 1px solid rgba(0, 153, 255, 1);
+  color: white;
+}
+
+.Checkbox + span:hover {
+  border: 1px solid rgba(0, 153, 255, 1);
+}

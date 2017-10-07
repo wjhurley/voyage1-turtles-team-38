@@ -1,44 +1,17 @@
-import {combineReducers} from 'redux';
+import {
+  WEATHER_FETCH_SUCCESS,
+  WEATHER_FETCH_FAILURE,
+} from '../actions/actionTypes';
 
-const data = (state = null, action) => {
+import {updateObject} from '../utils/index';
+
+export default (state = {}, action) => {
   switch (action.type) {
-    case 'FETCH_WEATHER_SUCCESS':
-      return action.data;
+    case WEATHER_FETCH_SUCCESS:
+      return updateObject(state, {data: action.data});
+    case WEATHER_FETCH_FAILURE:
+      return updateObject(state, {error: action.error});
     default:
       return state;
   }
-};
-
-const errorMessage = (state = null, action) => {
-  switch (action.type) {
-    case 'FETCH_WEATHER_FAILURE':
-      return action.errorMessage;
-    default:
-      return state;
-  }
-};
-
-const iconIsVisible = (state = true, action) => {
-  switch (action.type) {
-    case 'TOGGLE_ICON_VISIBILITY':
-      return !state;
-    default:
-      return state;
-  }
-};
-
-const modalIsVisible = (state = false, action) => {
-  switch (action.type) {
-    case 'TOGGLE_MODAL_VISIBILITY':
-      return !state;
-    default:
-      return state;
-  }
-};
-
-export default combineReducers({
-  data,
-  errorMessage,
-  iconIsVisible,
-  modalIsVisible
-});
+}

@@ -8,11 +8,64 @@ This app depends on the following libraries:
 * [redux](https://github.com/reactjs/redux) for state management
 * [axios](https://github.com/mzabriskie/axios) for asynchronous API calls
 * [redux-thunk](https://github.com/gaearon/redux-thunk) for performing asynchronous redux dispatches
+* [redux-persist](https://github.com/rt2zz/redux-persist) for persisting selective state to and from localStorage
 * [create-react-app](https://github.com/facebookincubator/create-react-app) for bundling and development
 
 From a functionality-perspective this app is composed of a number of widgets which the user can interact with to view or record information including weather, links, todos, notes, a "zen" background video and options.
 
-Each widget is composed of an icon and a modal (except the zen video). The basic structure and styles for the widget, icon and modal are defined commonly within the ``src/components/common`` directory.
+The widgets included are:
+
+* News:
+  * Feature: Display categorized news from Reddit or specified RSS
+  * Status: **Not implemented**
+* Note:
+  * Feature: Write a note that will persist between sessions
+  * Status: Implemented
+* Search:
+  * Feature: Search Google, opening results in iFrame
+  * Status: **Not implemented**
+* Quick Links:
+  * Feature: Display and update list of persisted quick links
+  * Status: Implemented
+* Top Visited:
+  * Feature: Display top visited sites (note: not possible as web page, needs to be Chrome Extension)
+  * Status **Not implemented**
+* Calendar:
+  * Feature: Display Google Calendar
+  * Status: **Not implemented**
+* Todo List:
+  * Feature: Update and view todo list including persistence between sessions
+  * Status: **Not implemented**
+* Weather:
+  * Feature: Fetch latest weather based on geolocation or custom location
+  * Status: Partially implemented
+  * Outstanding items:
+    * Graceful error handling - default to constant location OR use IP if geolocation fails?
+    * Add custom location functionality
+* Zen Mode:
+  * Feature: Runs a video in the background
+  * Status: **Not implemented**
+* Background:
+  * Feature: Displays random background image from collection, random color, or specified background
+  * Status: Partially implemented
+  * Outstanding items:
+    * Graceful error handling and shorter timeout - use color instead or specific picture?
+    * Random color functionality
+* Clock:
+  * Feature: Displays clock in background
+  * Status: Implemented
+* Quotes:
+  * Feature: Displays random quote
+  * Status: **Not-implemented**
+* Options:
+  * Feature: Set options
+  * Status: Partially implemented
+  * Outstanding items:
+    * Zen options
+    * To-do list integration
+    * Quotes integration
+    * Theme - styling based on drop-down
+    * Weather - custom location (see above)
 
 The widget specific view code is stored in its own directory under ``src/components``, for example ``src/components/WeatherWidget``.
 
@@ -20,9 +73,7 @@ The redux code is stored in ``src/actions`` for the [action creators](http://red
 
 ### Creating a Widget
 
-To create a widget you need to create the necessary action creators, redux reducers and react components.
-
-This is an iterative process so you likely will work on them all at the same time.
+To create a widget you need to create the necessary action creators, redux reducers and react components as well as integrate with options as appropriate.
 
 #### Action Creators
 
@@ -38,23 +89,49 @@ If there is any complex helper function required or that would be shared by acti
 
 Create a file in ``src/reducers`` with the naming convention *widget*.js. The reducer is a function that takes the current state and dispatched action as arguments and returns new state.
 
-Never return mutated state, so the [spread operator for arrays](https://github.com/tayiorbeii/egghead.io_redux_course_notes/blob/master/05-Avoiding_Array_Mutations.md) and [Object.assign()](https://github.com/tayiorbeii/egghead.io_redux_course_notes/blob/master/06-Avoiding_Object_Mutations.md) for objects. Do not use the spread operator for objects as we are not transpiling to ES7.
+Never return mutated state, so the [spread operator for arrays](https://github.com/tayiorbeii/egghead.io_redux_course_notes/blob/master/05-Avoiding_Array_Mutations.md) and [Object.assign()](https://github.com/tayiorbeii/egghead.io_redux_course_notes/blob/master/06-Avoiding_Object_Mutations.md) for objects. Two helper functions have been created in ``src/utils`` to help with this.
 
 #### Components
 
-Create a folder for each widget within ``src/components`` and also the redux-aware "container" component within a .js file in that folder both with the naming convention "*Widget*Widget".
+Create a folder for each widget within ``src/components`` including a js file in that folder that will contain all the code, named "*Widget*Widget". If custom CSS is required it can be stored defined in a .css file with the same name.
 
-This component should render the common ``Widget``, ``Icon`` and ``Modal`` components with appropriate props.
+The js file should contains a redux-aware "container" component. Presentational components can be defined above. 
 
-Icon & Modal should be "presentational" components and not aware of redux. The Modal will likely need it's own file for customizations (see ``WeatherWidget``) and is not required for Zen videos. The Icon will require its own customizations for weather & todo (and maybe calendar) but not for the others. If no customizations are required then the common ``Icon.js`` can be directly imported into the *Widget.js file.
+Any of the widgets which implement the "sliding widget" user interface should utilize the ``src/components/common/SlidingWidget*`` components. Those widgets include:
+
+* Quick Links
+* Top Visited
+* Weather
+* Todo List
+* Note
+* News
+
+For these, be sure to set ``heightWhenActive`` and ``maxHeightWhenActive`` to control the height. By default the height will increase based on the child content's height when active.
+
+Other widgets will be more custom, utilize ``src/components/common`` as appropriate. These widgets include:
+
+* Options
+* Quotes
+* Background
+* Clock
+* Search
+* Zen
 
 For custom styles create a css file with the same name and import it into that file
 
 Use ``mapStateToProps`` and ``mapDispatchToProps`` for connecting to redux. If local state or React lifecycle hooks are required then extend the React Container class. Otherwise, use a "stateless" function for both "container" and "presentational" components
 
+#### Options & Persistence
+
+If anything integrations with options widget are required also edit the options widget.
+
+Each section has it's own js file under ``OptionsWidget/sections``.
+
+If persistence to localStorage is required include the reducer in the ``whitelist`` in the ``src/index.js`` file. **Important**: Sometimes clearing of localStorage is required once the state is improperly updated during development - execute ``localStorage.clear()``
+
 ### Testing
 
-Right now complete manual testing to ensure the functionality matches Leoh (or improves on it, if there any issues). We are looking into unit testing options.
+Right now complete manual testing to ensure the functionality matches Leoh (or improves on it, if there any issues). We are looking into unit/regression testing options.
 
 ### Working with Git and GitHub - **Core Team**
 
