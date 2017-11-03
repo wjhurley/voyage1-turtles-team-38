@@ -4,6 +4,7 @@ import weather from './weather';
 import note from './note';
 import options from './options';
 import links from './links';
+import todos from './todos';
 
 // each reducer will be associated with a piece of the app's functionality
 // with the store's single state tree having being composed similarly, for example:
@@ -17,4 +18,5 @@ export default combineReducers({
   note,
   options,
   links,
+  todos
 });

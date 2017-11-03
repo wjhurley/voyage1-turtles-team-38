@@ -3,17 +3,17 @@ import PropTypes from 'prop-types';
 
 import './IconButton.css';
 
-const Icon = ({onHoverText, faClass, iconIsVisible, style, children}) => {
+const Icon = ({onHoverText, onClick, faClass, iconIsVisible, style, extraClass, children}) => {
   const combinedStyle = Object.assign({},style,{
     display: iconIsVisible ? "block" : "none"
   });
 
   return (
-    <div className="IconButton"
+    <div className={`IconButton ${extraClass}`}
          title={onHoverText}
          style={combinedStyle}
     >
-      {faClass ? <i className={`fa ${faClass}`}/> : null}
+      {faClass ? <i className={`fa ${faClass}`} onClick={onClick}/> : null}
       {children}
     </div>
   );
@@ -24,10 +24,12 @@ Icon.propTypes = {
   faClass: PropTypes.string,
   style: PropTypes.object,
   iconIsVisible: PropTypes.bool.isRequired,
+  extraClass: PropTypes.string
 };
 
 Icon.defaultProps = {
   style: {},
+  extraClass: ""
 };
 
 export default Icon;

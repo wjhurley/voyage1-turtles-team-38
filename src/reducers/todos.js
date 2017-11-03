@@ -1,3 +1,5 @@
+import {REHYDRATE} from 'redux-persist/constants';
+
 import {
   ADD_TODO,
   COMPLETE_TODO,
@@ -5,49 +7,62 @@ import {
   CLEAR_TODO
 } from '../actions/actionTypes';
 
-import {REHYDRATE} from 'redux-persist/constants';
+import {updateObject, appendArray, removeItemFromArray} from '../utils/index';
 
-import {updateObject, appendArray} '../utils/index';
-
-const initialState = {
-  items: [
-    {
-      task: "test task number one",
-      completed: false
-    },
-    {
-      task: "test task number two",
-      completed: false
-    },
-    {
-      task: "test task number three",
-      completed: true
-    }
-  ]
-};
+const initialState = [
+  {
+    task: "test task number one",
+    completed: false
+  },
+  {
+    task: "test task number two",
+    completed: false
+  },
+  {
+    task: "test task number three",
+    completed: true
+  },
+  {
+    task: "test task number four",
+    completed: true
+  },
+  {
+    task: "test 5",
+    completed: false
+  },
+  {
+    task: "test 6",
+    completed: false
+  },
+  {
+    task: "test 7",
+    completed: true
+  },
+  {
+    task: "test 8",
+    completed: false
+  }
+];
 
 export default (todo = initialState, action) => {
+  const newState = [].concat(todo);
   switch(action.type) {
+    case REHYDRATE:
+      return action.payload.todos ? action.payload.todos : initialState;
     case ADD_TODO:
       let newTodo = {
         task: action.task,
         completed: action.completed
-      }
+      };
       return appendArray(todo, newTodo);
     case COMPLETE_TODO:
-      newState.items[action.index].completed = true;
+      newState[action.index].completed = true;
       return newState;
     case DELETE_TODO:
-      let items = [].concat(newState.items);
-      items.splice(action.index, 1);
-      return Object.assign({}, newState, {
-        items: items
-      });
+      return removeItemFromArray(todo, action.index);
     case CLEAR_TODO:
-      return Object.assign({}, newState, {
-        items: []
-      });
+      return updateObject(todo, []);
     default:
-      return newState;
+      return todo;
   }
 }

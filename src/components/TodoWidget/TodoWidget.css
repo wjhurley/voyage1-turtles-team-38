@@ -1,0 +1,64 @@
+.Task > .fa-check {
+  height: 100%;
+  padding: 0.5em 2em 0.5em 0.5em;
+  font-size: 0.8em;
+  cursor: pointer;
+  vertical-align: middle;
+  visibility: hidden;
+}
+
+.Task > .fa-check:hover {
+  color: #64bf56;
+}
+
+.Task {
+  text-align: left;
+  display: none;
+}
+
+.Task:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.Task:hover .fa-check {
+  visibility: visible;
+}
+
+.Task > label {
+  font-size: 0.8em;
+}
+
+.TaskList {
+  overflow: auto;
+}
+
+.TaskList::-webkit-scrollbar {
+  width: 12px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.TaskList::-webkit-scrollbar-thumb {
+  border-radius: 1px;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.TaskList::selection {
+  background: rgba(0, 153, 255, 0.4);
+}
+
+.TaskList > .Input {
+  padding: 0px;
+}
+
+.TaskList > .Input > .Text {
+  outline: 0px;
+  opacity: 1;
+  width: 275px;
+  margin-top: 25px;
+  color: #fff;
+  font-size: 1em;
+}
+
+.TaskList > .Input > .Text::placeholder {
+  color: #fff;
+}

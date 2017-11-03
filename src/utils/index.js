@@ -9,3 +9,9 @@ export function appendArray(oldArray, newItem) {
   // use [].concat to correclty copy data instead of mutating
   return [].concat(oldArray,newItem);
 }
+
+export function removeItemFromArray(oldArray, removedItem) {
+  let newArray = [].concat(oldArray);
+  newArray.splice(removedItem, 1);
+  return newArray;
+}
