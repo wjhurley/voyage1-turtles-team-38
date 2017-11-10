@@ -1,8 +1,7 @@
 import {
   ADD_TODO,
-  COMPLETE_TODO,
   DELETE_TODO,
-  CLEAR_TODO
+  COUNT_TODOS
 } from './actionTypes';
 
 export function addTodo(task) {
@@ -13,13 +12,6 @@ export function addTodo(task) {
   };
 }
 
-export function completeTodo(index) {
-  return {
-    type: COMPLETE_TODO,
-    index: index
-  };
-}
-
 export function deleteTodo(index) {
   return {
     type: DELETE_TODO,
@@ -27,8 +19,21 @@ export function deleteTodo(index) {
   };
 }
 
-export function clearTodo() {
+export function countTodos() {
   return {
-    type: CLEAR_TODO
+    type: COUNT_TODOS
   };
 }
+
+// export function completeTodo(index) {
+//   return {
+//     type: COMPLETE_TODO,
+//     index: index
+//   };
+// }
+//
+// export function clearTodo() {
+//   return {
+//     type: CLEAR_TODO
+//   };
+// }

@@ -15,11 +15,15 @@
 }
 
 .weather-conditions > i {
-  font-size: 25px;
+  font-size: 1em;
 }
 
 .weather-city {
-  font-size: 18px;
+  font-size: 0.7em;
+}
+
+.weather-temp {
+  font-size: 1em;
 }
 
 .Weather-cell {
@@ -34,11 +38,4 @@
 .Weather-cell .range {
   font-size: 12px;
   display: flex;
-}
-
-.Icon .weather-temp {
-  font-size: 18px;
-}
-.Icon .weather-city {
-  font-size: 10px;
 }

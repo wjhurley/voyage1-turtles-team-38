@@ -5,6 +5,7 @@
   cursor: pointer;
   vertical-align: middle;
   visibility: hidden;
+  display: table-cell;
 }
 
 .Task > .fa-check:hover {
@@ -14,10 +15,12 @@
 .Task {
   text-align: left;
   display: none;
+  border-left: solid transparent;
 }
 
 .Task:hover {
   background-color: rgba(0, 0, 0, 0.4);
+  border-left: solid rgba(87, 169, 255, 1);
 }
 
 .Task:hover .fa-check {
@@ -26,6 +29,8 @@
 
 .Task > label {
   font-size: 0.8em;
+  display: table-cell;
+  vertical-align: middle;
 }
 
 .TaskList {
@@ -61,4 +66,23 @@
 
 .TaskList > .Input > .Text::placeholder {
   color: #fff;
+}
+
+.todoCounter {
+  position: absolute;
+  left: -0.6em;
+  vertical-align: middle;
+  padding-top: 0.25em;
+  height: 1.5em;
+  opacity: 1;
+  background-color: #ff5151;
+  border-radius: 1em;
+  width: 1.5em;
+  text-shadow: 1px 1px 1px #000;
+  font-weight: bold;
+  font-family: helvetica, arial;
+  text-align: center;
+  font-size: 0.6em;
+  bottom: 1.1em;
+  display: block;
 }

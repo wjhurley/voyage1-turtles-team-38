@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import './TodoWidget.css';
 
-import {addTodo, completeTodo, deleteTodo, clearTodo} from '../../actions/todoActions';
+import {addTodo, deleteTodo, countTodos} from '../../actions/todoActions';
 
 import SlidingWidget from '../common/SlidingWidget';
 import WidgetHeader from '../common/SlidingWidgetHeader';
@@ -28,24 +28,27 @@ class TodoWidget extends Component {
 
   handleKeyPress(event) {
     const {newTask} = this.state;
-    const {submitNewTodo} = this.props;
+    const {submitNewTodo, countTodos} = this.props;
 
     if (event.key === 'Enter' && newTask) {
       submitNewTodo(newTask);
+      countTodos();
 
       this.setState({newTask: ''});
     }
   }
 
   handleTaskComplete(task) {
-    const {completeTodo} = this.props;
-    
-    completeTodo(task);
+    const {deleteTodo, countTodos} = this.props;
+
+    deleteTodo(task);
+    countTodos();
   }
 
   render() {
     const {newTask} = this.state;
-    const {todos, allHide, todosHideIcon, todosActiveOnOpen} = this.props;
+    const {todoCount, tasks, allHide, todosHideIcon, todosActiveOnOpen} = this.props;
+
     return(
       <SlidingWidget
         yPosition="bottom"
@@ -58,19 +61,20 @@ class TodoWidget extends Component {
           iconIsVisible={!allHide && !todosHideIcon}
           faClass="fa-th-list"
           onHoverText="Todo List"
+          iconSpan={todoCount ? todoCount : null}
         />}
         widgetHeader={<WidgetHeader header="Todo List"/>}
         widgetBody={<WidgetBody extraClass="TaskList">
-          {todos.map((todo, i) => {
+          {tasks.map((task, i) => {
             return (
               <IconButton
-                iconIsVisible={!todo.completed}
+                iconIsVisible={!task.completed}
                 faClass="fa-check"
                 extraClass="Task"
                 onClick={this.handleTaskComplete.bind(null, i)}
                 key={i}
               >
-                <label>{todo.task}</label>
+                <label>{task.task}</label>
               </IconButton>
             );
           })}
@@ -89,7 +93,11 @@ class TodoWidget extends Component {
 
 function mapStateToProps(
   {
-    todos,
+    todos:
+      {
+        todoCount,
+        tasks
+      },
     options:
       {
         allHide,
@@ -98,7 +106,8 @@ function mapStateToProps(
       },
   }) {
   return {
-    todos,
+    todoCount,
+    tasks,
     allHide,
     todosHideIcon,
     todosActiveOnOpen,
@@ -110,15 +119,18 @@ function mapDispatchToProps(dispatch) {
     submitNewTodo: (task) => {
       dispatch(addTodo(task));
     },
-    completeTodo: (index) => {
-      dispatch(completeTodo(index));
-    },
     deleteTodo: (index) => {
       dispatch(deleteTodo(index));
     },
-    clearTodo: () => {
-      dispatch(clearTodo());
+    countTodos: () => {
+      dispatch(countTodos());
     },
+    // clearTodo: () => {
+    //   dispatch(clearTodo());
+    // },
+    // completeTodo: (index) => {
+    //   dispatch(completeTodo(index));
+    // },
   };
 }
 

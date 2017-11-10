@@ -2,50 +2,19 @@ import {REHYDRATE} from 'redux-persist/constants';
 
 import {
   ADD_TODO,
-  COMPLETE_TODO,
   DELETE_TODO,
-  CLEAR_TODO
+  COUNT_TODOS
 } from '../actions/actionTypes';
 
 import {updateObject, appendArray, removeItemFromArray} from '../utils/index';
 
-const initialState = [
-  {
-    task: "test task number one",
-    completed: false
-  },
-  {
-    task: "test task number two",
-    completed: false
-  },
-  {
-    task: "test task number three",
-    completed: true
-  },
-  {
-    task: "test task number four",
-    completed: true
-  },
-  {
-    task: "test 5",
-    completed: false
-  },
-  {
-    task: "test 6",
-    completed: false
-  },
-  {
-    task: "test 7",
-    completed: true
-  },
-  {
-    task: "test 8",
-    completed: false
-  }
-];
+const initialState = {
+  todoCount: 0,
+  tasks: []
+};
 
 export default (todo = initialState, action) => {
-  const newState = [].concat(todo);
+  let newTasks;
   switch(action.type) {
     case REHYDRATE:
       return action.payload.todos ? action.payload.todos : initialState;
@@ -54,14 +23,21 @@ export default (todo = initialState, action) => {
         task: action.task,
         completed: action.completed
       };
-      return appendArray(todo, newTodo);
-    case COMPLETE_TODO:
-      newState[action.index].completed = true;
-      return newState;
+      newTasks = appendArray(todo.tasks, newTodo);
+      return updateObject(todo, {tasks: newTasks});
     case DELETE_TODO:
-      return removeItemFromArray(todo, action.index);
-    case CLEAR_TODO:
-      return updateObject(todo, []);
+      newTasks = removeItemFromArray(todo.tasks, action.index);
+      return updateObject(todo, {tasks: newTasks});
+    case COUNT_TODOS:
+      let incompleteTodos = todo.tasks.filter(task => {
+        return !task.completed;
+      });
+      return updateObject(todo, {todoCount: incompleteTodos.length});
+    // case COMPLETE_TODO:
+    //   newState[action.index].completed = true;
+    //   return newState;
+    // case CLEAR_TODO:
+    //   return updateObject(todo, []);
     default:
       return todo;
   }

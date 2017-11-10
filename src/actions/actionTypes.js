@@ -5,9 +5,8 @@ export const LINKS_ADD = 'LINKS_ADD';
 export const LINKS_SAVE_FROM_STRING = 'LINKS_SAVE_FROM_STRING';
 
 export const ADD_TODO = 'ADD_TODO';
-export const COMPLETE_TODO = 'COMPLETE_TODO';
 export const DELETE_TODO = 'DELETE_TODO';
-export const CLEAR_TODO = 'CLEAR_TODO';
+export const COUNT_TODOS = 'COUNT_TODOS';
 
 export const WEATHER_FETCH_SUCCESS = 'WEATHER_FETCH_SUCCESS';
 export const WEATHER_FETCH_FAILURE = 'WEATHER_FETCH_FAILURE';
