@@ -33,20 +33,9 @@
   vertical-align: middle;
 }
 
-.TaskList {
-  overflow: auto;
-}
-
-.TaskList::-webkit-scrollbar {
-  width: 12px;
-  background-color: rgba(0, 0, 0, 0.2);
-}
-
-.TaskList::-webkit-scrollbar-thumb {
-  border-radius: 1px;
-  background-color: rgba(255, 255, 255, 0.3);
-}
-
+/*.TaskList {*/
+  /*overflow: scroll;*/
+/*}*/
 .TaskList::selection {
   background: rgba(0, 153, 255, 0.4);
 }

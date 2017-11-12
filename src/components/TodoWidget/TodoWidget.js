@@ -55,6 +55,7 @@ class TodoWidget extends Component {
         xPosition="right"
         maxHeightWhenActive="350px"
         width="290px"
+        panelOverflowY="auto"
         activeOnOpen={todosActiveOnOpen}
         showArrowOnIconHover={true}
         widgetIcon={<IconButton
