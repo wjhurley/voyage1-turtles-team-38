@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Checkbox} from '../../common/Inputs';
+import {Checkbox, TextArea} from '../../common/Inputs';
 
-const TodoOptions = ({name, handleInputChange, openSectionName, options}) => {
+const TodoOptions = ({name, handleInputChange, openSectionName, todosString, options, handleTodosChange}) => {
   const {
     todosHideIcon,
     todosActiveOnOpen,
@@ -11,11 +11,16 @@ const TodoOptions = ({name, handleInputChange, openSectionName, options}) => {
   return (
     <div
       style={{
-        display: name === openSectionName
-          ? 'block'
-          : 'none',
+        display: name === openSectionName ? 'block' : 'none',
       }}
     >
+      <TextArea
+        name="todosString"
+        value={todosString}
+        onChange={handleTodosChange}
+        spellcheck={false}
+      />
+      <br/>
       <Checkbox
         name="todosHideIcon"
         checked={todosHideIcon}
@@ -37,6 +42,8 @@ TodoOptions.propTypes = {
   openSectionName: PropTypes.string.isRequired,
   name: PropTypes.string,
   options: PropTypes.object,
+  todosString: PropTypes.string.isRequired,
+  handleInputChange: PropTypes.func.isRequired,
 };
 
 TodoOptions.defaultProps = {

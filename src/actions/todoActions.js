@@ -1,7 +1,8 @@
 import {
   ADD_TODO,
   DELETE_TODO,
-  COUNT_TODOS
+  COUNT_TODOS,
+  TODOS_SAVE_FROM_STRING
 } from './actionTypes';
 
 export function addTodo(task) {
@@ -22,6 +23,13 @@ export function deleteTodo(index) {
 export function countTodos() {
   return {
     type: COUNT_TODOS
+  };
+}
+
+export function saveTodosFromString(todos) {
+  return {
+    type: TODOS_SAVE_FROM_STRING,
+    todos
   };
 }
 

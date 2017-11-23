@@ -6,6 +6,8 @@ import {saveOptions} from '../../actions/optionsActions';
 // links/todos are special case - not "options" reducer but can be saved via options form
 import {saveLinksFromString} from '../../actions/linkActions';
 import {getLinksAsString} from '../../reducers/links';
+import {saveTodosFromString, countTodos} from '../../actions/todoActions';
+import {getTodosAsString} from '../../reducers/todos';
 import {updateObject} from '../../utils/index';
 
 import './OptionsWidget.css';
@@ -101,10 +103,11 @@ class OptionsWidget extends Component {
     this.handleOnClickOutsidePanel = this.handleOnClickOutsidePanel.bind(this);
     this.handleOptionsInputChange = this.handleOptionsInputChange.bind(this);
     this.handleLinksChange = this.handleLinksChange.bind(this);
+    this.handleTodosChange = this.handleTodosChange.bind(this);
 
     // will store form state in Options Widget from redux on mounting
     // which will come from localStorage (or default if first use)
-    // state will then be managed locally, any only dispatched to redux (and then localStorage)
+    // state will then be managed locally, and only dispatched to redux (and then localStorage)
     // if Save & Apply is done
 
     this.state = {
@@ -112,8 +115,10 @@ class OptionsWidget extends Component {
       windowIsOpen: false,
       initialOptions: this.props.options,
       initialLinksString: this.props.linksString,
+      initialTodosString: this.props.todosString,
       options: this.props.options,
       linksString: this.props.linksString,
+      todosString: this.props.todosString,
     };
   }
 
@@ -124,6 +129,8 @@ class OptionsWidget extends Component {
     this.setState({
       initialLinksString: nextProps.linksString,
       linksString: nextProps.linksString,
+      initialTodosString: nextProps.todosString,
+      todosString: nextProps.todosString,
     });
   }
 
@@ -132,6 +139,8 @@ class OptionsWidget extends Component {
   handleSubmit(event) {
     this.props.saveNewOptions(this.state.options);
     this.props.saveNewLinks(this.state.linksString);
+    this.props.saveNewTodos(this.state.todosString);
+    this.props.countTodos();
     // no event.preventDefault() - want browser to refresh ---> will save to localStorage
   }
 
@@ -143,6 +152,7 @@ class OptionsWidget extends Component {
     this.setState({
       options: this.state.initialOptions,
       linksString: this.state.initialLinksString,
+      todosString: this.state.initialTodosString,
     });
   }
 
@@ -183,12 +193,19 @@ class OptionsWidget extends Component {
     });
   }
 
+  handleTodosChange(event) {
+    this.setState({
+      todosString: event.target.value,
+    });
+  }
+
   render() {
     const {
       windowIsOpen,
       openSectionName,
       options,
       linksString,
+      todosString,
     } = this.state;
 
     // for preventing onclickoutside handler when clicking icon
@@ -197,7 +214,7 @@ class OptionsWidget extends Component {
     return (
       <div>
         {/*unlike other widgets with opening window/panel on click
-            options window is fixed in middle and has no sliding optiond
+            options window is fixed in middle and has no sliding option
          */}
         <Button
           extraClassNames={OptionsIconButtonClassName}
@@ -243,6 +260,8 @@ class OptionsWidget extends Component {
                 openSectionName={openSectionName}
                 options={options}
                 handleInputChange={this.handleOptionsInputChange}
+                handleTodosChange={this.handleTodosChange}
+                todosString={todosString}
               />
               <WeatherOptions
                 openSectionName={openSectionName}
@@ -273,9 +292,10 @@ class OptionsWidget extends Component {
   }
 }
 
-function mapStateToProps({options, links}) {
+function mapStateToProps({options, links, todos}) {
   const linksString = getLinksAsString(links);
-  return {options, linksString};
+  const todosString = getTodosAsString(todos.tasks);
+  return {options, linksString, todosString};
 }
 
 function mapDispatchToProps(dispatch) {
@@ -283,9 +303,15 @@ function mapDispatchToProps(dispatch) {
     saveNewLinks: savedLinksString => {
       dispatch(saveLinksFromString(savedLinksString));
     },
+    saveNewTodos: savedTodosString => {
+      dispatch(saveTodosFromString(savedTodosString));
+    },
     saveNewOptions: savedOptions => {
       dispatch(saveOptions(savedOptions));
     },
+    countTodos: () => {
+      dispatch(countTodos());
+    }
   };
 }
 

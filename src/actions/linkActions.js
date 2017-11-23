@@ -11,10 +11,8 @@ export function addLink(title,url) {
 }
 
 export function saveLinksFromString(links) {
-  console.log("Save links from string",links);
   return {
     type: LINKS_SAVE_FROM_STRING,
     links
   }
 }
-
