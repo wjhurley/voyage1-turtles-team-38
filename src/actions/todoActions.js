@@ -1,27 +1,47 @@
-export function addTodo(message) {
-  return {
-    type: 'ADD_TODO',
-    message: message,
-    completed: false
-  };
-}
+import {
+  ADD_TODO,
+  DELETE_TODO,
+  COUNT_TODOS,
+  TODOS_SAVE_FROM_STRING
+} from './actionTypes';
 
-export function completeTodo(index) {
+export function addTodo(task) {
   return {
-    type: 'COMPLETE_TODO',
-    index: index
+    type: ADD_TODO,
+    task: task,
+    completed: false
   };
 }
 
 export function deleteTodo(index) {
   return {
-    type: 'DELETE_TODO',
+    type: DELETE_TODO,
     index: index
   };
 }
 
-export function clearTodo() {
+export function countTodos() {
   return {
-    type: 'CLEAR_TODO'
+    type: COUNT_TODOS
   };
 }
+
+export function saveTodosFromString(todos) {
+  return {
+    type: TODOS_SAVE_FROM_STRING,
+    todos
+  };
+}
+
+// export function completeTodo(index) {
+//   return {
+//     type: COMPLETE_TODO,
+//     index: index
+//   };
+// }
+//
+// export function clearTodo() {
+//   return {
+//     type: CLEAR_TODO
+//   };
+// }

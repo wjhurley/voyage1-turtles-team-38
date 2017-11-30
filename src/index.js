@@ -36,7 +36,7 @@ class AppProvider extends Component {
       store,
       // named reducers to persist in store
       // don't want to persist API related (e.g. weather)
-      {whitelist: ['options', 'note', 'links']},
+      {whitelist: ['options', 'note', 'links', 'todos']},
       // callback after rehydration finished
       () => this.setState({rehydrated: true}),
     );

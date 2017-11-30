@@ -77,8 +77,11 @@ class SlidingPanel extends Component {
   // this is modified from the solution provided here: https://css-tricks.com/using-css-transitions-auto-dimensions/
 
   animateSlideActive(callback) {
-    const {heightWhenActive} = this.props;
+    const {heightWhenActive, panelOverflowY} = this.props;
     this.slider.addEventListener('transitionend', completeAnimateActive);
+
+    // hide scrollbar (if it exists) when transitioning to inactive
+    this.slider.style.overflowY = 'hidden';
 
     if (heightWhenActive === 'auto') {
       // for auto, get height of element's inner content
@@ -93,6 +96,8 @@ class SlidingPanel extends Component {
       if (heightWhenActive === 'auto') {
         // set height back to auto to ensure child content can be added or removed as expected
         event.target.style.height = null;
+        // set scrollbar to property value, so if auto it will be shown when active
+        event.target.style.overflowY = panelOverflowY;
       }
       event.target.removeEventListener('transitionend', completeAnimateActive);
       callback();
@@ -102,6 +107,9 @@ class SlidingPanel extends Component {
   animateSlideInactive(callback) {
     const {heightWhenActive} = this.props;
     this.slider.addEventListener('transitionend', completeAnimateInactive);
+
+    // hide scrollbar (if it exists) when transitioning to inactive
+    this.slider.style.overflowY = 'hidden';
 
     if (heightWhenActive === 'auto') {
       // for auto, get height of element's inner content
@@ -127,7 +135,7 @@ class SlidingPanel extends Component {
     }
 
     render() {
-      const {maxHeightWhenActive, width, children} = this.props;
+      const {maxHeightWhenActive, width, children, panelOverflowY} = this.props;
 
         return (
           //need to reference div to transition height animation as desired (see functions)
@@ -136,6 +144,7 @@ class SlidingPanel extends Component {
                  width,
                  height: this.state.initialHeight,
                  maxHeight: maxHeightWhenActive,
+                 overflowY: panelOverflowY
                }}
                ref={(div) => {this.slider = div; }}>
             {children}
@@ -214,6 +223,7 @@ class SlidingPanel extends Component {
       widgetIcon,
       widgetHeader,
       widgetBody,
+      panelOverflowY
     } = this.props;
 
     // render in reverse order widget placed on top or bottom
@@ -255,6 +265,7 @@ class SlidingPanel extends Component {
           width={width}
           disableOnClickOutside={!isActive}
           outsideClickIgnoreClass={iconButtonId}
+          panelOverflowY={panelOverflowY}
         >
           {widgetHeader ? widgetHeader : null}
           {widgetBody}
@@ -278,6 +289,7 @@ SlidingWidget.propTypes = {
   widgetHeader: PropTypes.element,
   activeOnOpen: PropTypes.oneOf(['', true, false]), // because of how form state is processed, may be empty string
   showArrowOnIconHover: PropTypes.bool,
+  panelOverflowY: PropTypes.string
 };
 
 SlidingWidget.defaultProps = {
@@ -287,6 +299,7 @@ SlidingWidget.defaultProps = {
   heightWhenActive: 'auto',
   maxHeightWhenActive: 'none',
   arrowOnHover: false,
+  panelOverflowY: 'hidden'
 };
 
 export default SlidingWidget;

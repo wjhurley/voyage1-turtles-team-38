@@ -11,12 +11,12 @@ import TextArea from '../common/Inputs/TextArea';
 
 const NoteBody = ({content, updateNote}) => {
   return (
-    <WidgetBody header="Notes">
+    <WidgetBody>
       <TextArea
         name="notes"
         value={content}
         onChange={event => updateNote(event.target.value)}
-        style={{flexGrow: 1}}
+        style={{flexGrow: 1, borderBottom: "none", padding: "5px"}}
       />
     </WidgetBody>
   );

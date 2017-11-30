@@ -19,7 +19,7 @@
 }
 
 .MenuItem:hover {
-  border-left: solid rgba(0, 153, 255, 0.4);
+  border-left: solid rgba(87, 169, 255, 1);
   background-color: rgba(0, 0, 0, 0.8);
   padding: 4px;
 }

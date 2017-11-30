@@ -5,6 +5,7 @@ import WeatherWidget from './WeatherWidget';
 import ClockWidget from './ClockWidget';
 import OptionsWidget from './OptionsWidget';
 import NoteWidget from './NoteWidget';
+import TodoWidget from './TodoWidget';
 import BackgroundWidget from './BackgroundWidget';
 
 import './App.css';
@@ -17,6 +18,7 @@ const App = () => {
       <ClockWidget/>
       <OptionsWidget/>
       <NoteWidget/>
+      <TodoWidget/>
       <BackgroundWidget/>
     </div>
   );
